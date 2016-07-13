@@ -55,11 +55,11 @@ If you see a (venv) before the prompt, youre good to go!!
 #### Download wheels from http://www.lfd.uci.edu/~gohlke/pythonlibs/
 - (for x64)
   - numpy-1.11.1+mkl-cp35-cp35m-win_amd64.whl
-  - matplotlib-1.5.2-cp35-cp35m-win32.whl
+  - matplotlib-1.5.2-cp35-cp35m-win_amd64.whl
   - opencv_python-3.1.0-cp35-cp35m-win_amd64.whl
 - (for x86) 
   - numpy-1.11.1+mkl-cp35-cp35m-win32.whl
-  - matplotlib-1.5.2-cp35-cp35m-win_amd64.whl
+  - matplotlib-1.5.2-cp35-cp35m-win32.whl
   - opencv_python-3.1.0-cp35-cp35m-win32.whl
 
 #### Open powershell in administrator mode and use virtual environment:
