@@ -1,0 +1,37 @@
+Date:       1 December 2013
+Version:    0.89
+    * Updated MIDIFile to support non-integral note values better.
+    * Changed default temporal resolution to 960 ticks per beat.
+    * Updated Python3 support. It is still somewhat experimental.
+    * Misc. Bug Fixes.
+
+Date:       20 October 2009
+Version:    0.87
+
+    First public release.
+
+    * Tweaked email address in contact information.
+    * Added/updated documentation.
+    * Tweaked the setup.py file to produce better distributions.
+
+Date:       9 October 2009
+Version:    0.86
+
+    * added addNote as main interface into package (not
+      addNoteByNumber). It's been a while since I've cut a release,
+      so there may be other things that have happened.
+
+    * Created distutils package.
+
+    * Minor code clean-up.
+
+    * Added documentation in-line and in text (MIDIFile.txt).
+
+    * All public functions should now be accessed thought
+      MIDIFile directly, and not the component tracks.
+
+Date:    15 January 2009
+Version:    0.85
+
+    * Split out from existing work as a separate project.
+

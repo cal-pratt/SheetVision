@@ -1,0 +1,229 @@
+========================
+MIDIUtil Class Reference
+========================
+
+--------------
+class MIDIFile
+--------------
+
+        A class that represents a full, well-formed MIDI pattern.
+
+        This is a container object that contains a header, one or more
+        tracks, and the data associated with a proper and well-formed
+        MIDI pattern.
+
+    Calling
+
+        MyMIDI = MidiFile(tracks, removeDuplicates=True,  deinterleave=True)
+
+    normally
+
+        MyMIDI = MidiFile(tracks)
+
+    Arguments
+
+        o tracks: The number of tracks this object contains
+
+        o removeDuplicates: If true (the default), the software will
+          remove duplicate events which have been added. For example,
+          two notes at the same channel, time, pitch, and duration would
+          be considered duplicate.
+
+        o deinterleave: If True (the default), overlapping notes
+          (same pitch, same channel) will be modified so that they do
+          not overlap. Otherwise the sequencing software will need to
+          figure out how to interpret NoteOff events upon playback.
+
+================
+Public Functions
+================
+
+    ---------------------------------------------------
+    addNote(track, channel, pitch,time,duration,volume)
+    ---------------------------------------------------
+
+        Add notes to the MIDIFile object
+
+    Use
+
+        MyMIDI.addNotes(track,channel,pitch,time, duration, volume)
+
+    Arguments
+
+        o track: The track to which the note is added.
+        o channel: the MIDI channel to assign to the note. [Integer, 0-15]
+        o pitch: the MIDI pitch number [Integer, 0-127].
+        o time: the time (in beats) at which the note sounds [Float].
+        o duration: the duration of the note (in beats) [Float].
+        o lume: the volume (velocity) of the note. [Integer, 0-127].
+
+
+    ----------------------------------
+    addTrackName(track, time,trackName)
+    ----------------------------------
+
+        Add a track name to a MIDI track.
+
+    Use
+
+        MyMIDI.addTrackName(track,time,trackName)
+
+    Arguments
+
+        o track: The track to which the name is added. [Integer, 0-127].
+        o time: The time at which the track name is added, in beats
+          [Float].
+        o trackName: The track name. [String].
+
+    ---------------------------
+    addTempo(track, time,tempo)
+    ---------------------------
+
+        Add a tempo event.
+
+    Use
+
+        MyMIDI.addTempo(track, time, tempo)
+
+    Arguments
+
+        o track: The track to which the event is added. [Integer, 0-127]
+        o time: The time at which the event is added, in beats. [Float]
+        o tempo: The tempo, in Beats per Minute. [Integer]
+
+
+    -----------------------------------------------
+    addProgramChange(track, channel, time, program)
+    -----------------------------------------------
+
+        Add a MIDI program change event.
+
+    Use
+
+        MyMIDI.addProgramChange(track,channel, time, program)
+
+    Arguments
+
+        o track: The track to which the event is added. [Integer, 0-127]
+        o channel: The channel the event is assigned to. [Integer, 0-15]
+        o time: The time at which the event is added, in beats. [Float]
+        o program: the program number. [Integer, 0-127]
+
+
+    --------------------------------------------------------------
+    addControllerEvent(track, channel,time,eventType, paramerter1)
+    --------------------------------------------------------------
+
+        Add a MIDI controller event.
+
+    Use
+
+        MyMIDI.addControllerEvent(track, channel, time, eventType, \
+            parameter1)
+
+    Arguments
+
+        o track: The track to which the event is added. [Integer, 0-127]
+        o channel: The channel the event is assigned to. [Integer, 0-15]
+        o time: The time at which the event is added, in beats. [Float]
+        o eventType: the controller event type.
+        o parameter1: The event's parameter. The meaning of which varies
+          by event type.
+
+    ---------------------------------------------------------------------
+    changeNoteTuning(track, tunings, sysExChannel=0x7F, realTime=False, \
+        tuningProgam=0)
+    ---------------------------------------------------------------------
+
+        Change a note's tuning using sysEx change tuning program.
+
+    Use
+
+        MyMIDI.changeNoteTuning(track,[tunings],realTime=False, \
+            tuningProgram=0)
+
+    Arguments
+
+        o track: The track to which the event is added. [Integer, 0-127].
+        o tunings: A list of tuples in the form (pitchNumber,
+          frequency).  [[(Integer,Float]]
+        o realTime: Boolean which sets the real-time flag. Defaults to false.
+        o sysExChannel: do note use (see below).
+        o tuningProgram: Tuning program to assign. Defaults to
+          zero. [Integer, 0-127]
+
+    In general the sysExChannel should not be changed (parameter will
+    be depreciated).
+
+    Also note that many software packages and hardware packages do not
+    implement this standard!
+
+
+    ---------------------
+    writeFile(fileHandle)
+    ---------------------
+
+        Write the MIDI File.
+
+    Use
+
+        MyMIDI.writeFile(filehandle)
+
+    Arguments
+
+        o filehandle: a file handle that has been opened for binary
+          writing.
+
+
+    -------------------------------------
+    addSysEx(track, time, manID, payload)
+    -------------------------------------
+
+        Add a SysEx event
+
+    Use
+
+        MyMIDI.addSysEx(track,time,ID,payload)
+
+    Arguments
+
+        o track: The track to which the event is added. [Integer, 0-127].
+        o time: The time at which the event is added, in beats. [Float].
+        o ID: The SysEx ID number
+        o payload: the event payload.
+
+    Note: This is a low-level MIDI function, so care must be used in
+    constructing the payload. It is recommended that higher-level helper
+    functions be written to wrap this function and construct the payload
+    if a developer finds him or herself using the function heavily.
+
+
+    ---------------------------------------------------------
+    addUniversalSysEx(track,  time,code, subcode, payload,  \
+        sysExChannel=0x7F,  realTime=False)}f
+    ---------------------------------------------------------
+
+        Add a Universal SysEx event.
+
+    Use
+
+        MyMIDI.addUniversalSysEx(track, time, code, subcode, payload, \
+            sysExChannel=0x7f, realTime=False)
+
+    Arguments
+
+        o track: The track to which the event is added. [Integer, 0-127].
+        o time: The time at which the event is added, in beats. [Float].
+        o code: The event code. [Integer]
+        o subcode The event sub-code [Integer]
+        o payload: The event payload. [Binary string]
+        o sysExChannel: The SysEx channel.
+        o realTime: Sets the real-time flag. Defaults to zero.
+
+    Note: This is a low-level MIDI function, so care must be used in
+    constructing the payload. It is recommended that higher-level helper
+    functions be written to wrap this function and construct the payload
+    if a developer finds him or herself using the function heavily. As an
+    example of such a helper function, see the changeNoteTuning function,
+    both here and in MIDITrack.
+

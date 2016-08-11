@@ -1,0 +1,14 @@
+README.txt
+setup.py
+License.txt
+CHANGELOG
+VERSION
+MANIFEST
+src/midiutil/MidiFile.py
+src/midiutil/MidiFile3.py
+src/midiutil/__init__.py
+examples/single-note-example.py
+documentation/Extending.txt
+documentation/ClassReference.txt
+src/unittests/miditest.py
+src/unittests/miditest.py3
