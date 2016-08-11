@@ -2,57 +2,29 @@
 
 Sheet Vision is a python program which reads sheet music and turns it into midi files.
 
-------------------
-## Installing a virtual environment for windows
+![image](https://cloud.githubusercontent.com/assets/7611406/17604255/9819f878-5fef-11e6-8f49-865d07284803.png)
 
-#### Install [python 3.5.2](https://www.python.org/downloads/windows/)
- - choose Python 3.5.2 Windows executable installer for your system
- - open installer and choose "custom install" and then hit "next"
-  - check 'install for all users' 
-  - check 'add python to environment variables'
-  - change install location to "C:\Python35" 
-  - install
-            
-#### Open powershell in administrator mode:
-```
-mkdir <project dir>
-cd <project dir>
-Set-ExecutionPolicy RemoteSigned
-(type 'Y' when prompted)
-```
-#### Verify python install:
-```
-python --version
-```
-#### install ez_setup:
-```
-wget https://bootstrap.pypa.io/ez_setup.py -OutFile ez_setup.py
-python ez_setup.py
-```
-#### Install pip:
-```
-wget https://bootstrap.pypa.io/get-pip.py -OutFile get-pip.py
-python get-pip.py
-```
-#### Verify pip
-```
-pip --version
-```
-#### Install virtualenv
-```
-pip install virtualenv
-python -m virtualenv venv
-```
-#### Use the newly created virtual environment
-```
-.\venv\Scripts\activate
-```
-If you see a (venv) before the prompt, youre good to go!!
+##Developing a Sheet Music Reader
+Calvin Gregory, and Calvert Pratt
+
+###I.	Introduction
+Applications in the field of Music Optical Character Recognition (OCR), also referred to as Optical Music Recognition, are an application of machine vision which serves to simplify the sight reading learning process and speed up music transcription. The sheet music reader application SheetVision was developed to convert single-tone lines of written music into a computer readable format for audio song playback. It does this through a template image matching algorithm implemented in Python using OpenCV which searches the target image for instances of each music character type such as notes, flats, and sharps. These characters are then identified, sequenced, and exported to a MIDI file for playback. 
+
+###II.	Project Scope
+The sheet music reader application was designed to convert images of written sheet music into a computer-readable format. SheetVision takes in an image of written sheet music, classifies all relevant music characters in the image, then generates and exports a MIDI file with all of the classified characters properly sequenced and identified as music notations. The application can handle single tone sequences of notes consisting of whole, half, quarter, and paired eighth (Ti-Ti) notes. It also interprets key signatures (sharp and flat symbols included at the beginning of a line) and rest characters. SheetVision is capable of interpreting most simple to moderate complexity sheet music arrangements written for single-tone instruments such as woodwinds, strings, and vocals. 
+
+###III.	Algorithm
+The algorithm used for music character identification uses the following series of steps to categorize each note or symbol in the target image:
+ - A.	Image Filtering / Binary Conversion
+ - B.	Template Scaling
+ - C.	Character Classification
+ - D.	Classifier Thresholding
+ - E.	Note Identification and Sequencing
+ - F.	Export results to MIDI
 
 ------------------
-## Install project dependancies for windows
 
-#### Download wheels from http://www.lfd.uci.edu/~gohlke/pythonlibs/
+#### Libraries sourced from http://www.lfd.uci.edu/~gohlke/pythonlibs/
 - (for x64)
   - numpy-1.11.1+mkl-cp35-cp35m-win_amd64.whl
   - matplotlib-1.5.2-cp35-cp35m-win_amd64.whl
@@ -62,17 +34,4 @@ If you see a (venv) before the prompt, youre good to go!!
   - matplotlib-1.5.2-cp35-cp35m-win32.whl
   - opencv_python-3.1.0-cp35-cp35m-win32.whl
 
-#### Open powershell in administrator mode and use virtual environment:
-```
-pip install .\numpy...
-pip install .\matplotlib...
-pip install .\opencv_python...
-```
-#### Verify opencv
-```
-python
-    >>> import cv2
-    >>> print(cv2.__version__)
-    >>> exit()
-```
-If you see the version, everything went okay!
+Midiutil Python 3 version is included in this repo
